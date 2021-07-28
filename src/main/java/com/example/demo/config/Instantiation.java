@@ -23,7 +23,7 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Bombs", "alex@gmail.com");
         User neno = new User(null, "Neno Grey", "neno@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(rosi, alex, neno)); 
+        userRepository.saveAll(Arrays.asList(rosi, alex, neno));
         /*
         Aqui, tive o mesmo problema que outras pessoas do curso tiveram: em vez de
         'userRepository.save(Arrays.asList(rosi, alex, neno));'
