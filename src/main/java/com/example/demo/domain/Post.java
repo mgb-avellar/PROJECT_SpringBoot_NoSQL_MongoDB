@@ -1,11 +1,14 @@
 package com.example.demo.domain;
 
 import com.example.demo.dto.AuthorDTO;
+import com.example.demo.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -23,6 +26,10 @@ public class Post implements Serializable {
     // Na aula 356, refatoramos o Post usando o AuthorDTO para Author
 
     private AuthorDTO author;
+
+    // Aula 360
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post() {
 
@@ -74,6 +81,14 @@ public class Post implements Serializable {
 
     public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     @Override

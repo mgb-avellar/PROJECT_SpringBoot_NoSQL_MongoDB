@@ -3,6 +3,7 @@ package com.example.demo.config;
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
 import com.example.demo.dto.AuthorDTO;
+import com.example.demo.dto.CommentDTO;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,16 @@ public class Instantiation implements CommandLineRunner {
         Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(rosi));
         Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(rosi));
         // new AuthorDTO(rosi) na aula 356
+
+        // Instanciando logo abaixo alguns comentários da aula 360 (entre esta linha e a linha do '// Salvando no banco')
+
+        CommentDTO c1 = new CommentDTO("Boa viagem, Zi!", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite, Zi!", sdf.parse("22/03/2018"), new AuthorDTO(neno));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("23/03/2018"), new AuthorDTO(alex));
+
+        // Próximo passo é associar os comentários acima com os respectivos posts
+        post1.getComments().addAll(Arrays.asList(c1, c2));
+        post2.getComments().addAll(Arrays.asList(c3));
 
         // Salvando no banco
         postRepository.saveAll(Arrays.asList(post1, post2));
