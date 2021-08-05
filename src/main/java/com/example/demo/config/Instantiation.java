@@ -55,5 +55,9 @@ public class Instantiation implements CommandLineRunner {
 
         // Salvando no banco
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        // aula 357
+        rosi.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(rosi);
     }
 }

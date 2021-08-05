@@ -1,9 +1,12 @@
 package com.example.demo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document       // Aula 347: é assim que dizemos que estamos lidando com um banco mongo
@@ -16,6 +19,10 @@ public class User implements Serializable {
     private String id;
     private String name;
     private String email;
+
+    // Aula 357
+    @DBRef(lazy = true)
+    private List<Post> posts = new ArrayList<>();
 
     // Associações
 
@@ -57,6 +64,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
     // HashCode e Equals
 
     @Override
@@ -71,4 +86,6 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
