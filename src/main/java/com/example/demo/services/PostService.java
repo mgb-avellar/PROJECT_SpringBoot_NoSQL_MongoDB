@@ -6,6 +6,7 @@ import com.example.demo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,4 +21,10 @@ public class PostService {
         return post.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    // Criando um método de busca (aula 361)
+
+    public List<Post> findByTitle(String text) {
+
+        return repo.findByTitleContainingIgnoreCase(text);
+    }
 }
